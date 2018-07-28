@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+
+import Login from './components/login/index';
 
 export default props => (
-    <View>
-        <Text>FALAE MEUS BACANÃOSSSS!</Text>
-    </View>
-)
+    <Login />
+);
