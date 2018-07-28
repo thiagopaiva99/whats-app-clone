@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Login from './components/login';
-import Register from './components/register/index';
+import Routes from './Routes';
 
 export default props => (
-    <Register />
+    <Routes />
 );
