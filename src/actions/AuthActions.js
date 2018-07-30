@@ -26,9 +26,16 @@ const modifyPhone = text => {
     }
 }
 
+const registerUser = user => {
+    return {
+        type: 'teste'
+    }
+}
+
 export {
     modifyName,
     modifyEmail,
     modifyPass,
-    modifyPhone
+    modifyPhone,
+    registerUser
 }
