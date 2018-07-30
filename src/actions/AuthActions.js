@@ -1,3 +1,10 @@
+const modifyName = text => {
+    return {
+        type: 'MODIFY_NAME',
+        payload: text
+    }
+}
+
 const modifyEmail = text => {
     return {
         type: 'MODIFY_EMAIL',
@@ -12,7 +19,16 @@ const modifyPass = text => {
     }
 }
 
+const modifyPhone = text => {
+    return {
+        type: 'MODIFY_PHONE',
+        payload: text
+    }
+}
+
 export {
+    modifyName,
     modifyEmail,
-    modifyPass
+    modifyPass,
+    modifyPhone
 }

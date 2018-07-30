@@ -6,6 +6,20 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+    if (action.type === 'MODIFY_NAME') {
+        return {
+            ...state,
+            name: action.payload
+        }
+    }
+
+    if (action.type === 'MODIFY_PHONE') {
+        return {
+            ...state,
+            phone: action.payload
+        }
+    }
+
     if (action.type === 'MODIFY_EMAIL') {
         return {
             ...state,
