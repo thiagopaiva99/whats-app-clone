@@ -11,10 +11,10 @@ const Register = props => (
                 <Text style={{ fontSize: 25, backgroundColor: 'transparent' }}>Create an Account</Text>
             </View>
             <View style={{ flex: 3 }}>
-                <TextInput value={ props.name } onChangeText={ text => props.modifyName(text) } style={{ fontSize: 20, height: 45 }} placeholder='Name' />
-                <TextInput value={ props.phone } onChangeText={ text => props.modifyPhone(text) } style={{ fontSize: 20, height: 45 }} placeholder='Phone' />
-                <TextInput value={ props.email } onChangeText={ text => props.modifyEmail(text) } style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
-                <TextInput value={ props.password } onChangeText={ text => props.modifyPass(text) } style={{ fontSize: 20, height: 45 }} placeholder='Password' secureTextEntry={ true } />
+                <TextInput value={ props.name } onChangeText={ text => props.modifyName(text) } style={{ fontSize: 20, height: 45 }} placeholder='Name' placeholderTextColor='#fff' />
+                <TextInput value={ props.phone } onChangeText={ text => props.modifyPhone(text) } style={{ fontSize: 20, height: 45 }} placeholder='Phone' placeholderTextColor='#fff' />
+                <TextInput value={ props.email } onChangeText={ text => props.modifyEmail(text) } style={{ fontSize: 20, height: 45 }} placeholder='E-mail' placeholderTextColor='#fff' />
+                <TextInput value={ props.password } onChangeText={ text => props.modifyPass(text) } style={{ fontSize: 20, height: 45 }} placeholder='Password' secureTextEntry={ true } placeholderTextColor='#fff' />
             </View>
             <View style={{ flex: 1 }}>
                 <Button title='Register' color='#115E54' onPress={ () => false } />
