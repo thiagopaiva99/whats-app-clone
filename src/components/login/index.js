@@ -9,11 +9,11 @@ const Login = props => {
     return (
         <View style={{ flex: 1, padding: 10 }}>
             <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 25, justifyContent: 'center', alignItems: 'center' }}>WhatsApp</Text>
+                <Text style={{ fontSize: 25, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>WhatsApp</Text>
             </View>
             <View style={{ flex: 2 }}>
                 <TextInput value={ props.email } onChangeText={ text => props.modifyEmail(text) } style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
-                <TextInput value={ props.password } onChangeText={ text => props.modifyPass(text) } style={{ fontSize: 20, height: 45 }} placeholder='Password' />
+                <TextInput value={ props.password } onChangeText={ text => props.modifyPass(text) } style={{ fontSize: 20, height: 45 }} placeholder='Password' secureTextEntry={ true } />
                 <TouchableHighlight onPress={ () => Actions.register() }>
                     <Text style={{ fontSize: 20 }}>
                         Still don't have an account? <Text>Register Now!</Text>
