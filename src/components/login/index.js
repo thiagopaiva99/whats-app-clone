@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
-import { modifyEmail } from '../../actions/AuthActions'
+import { modifyEmail, modifyPass } from '../../actions/AuthActions'
 
 const Login = props => {
     return (
@@ -13,7 +13,7 @@ const Login = props => {
             </View>
             <View style={{ flex: 2 }}>
                 <TextInput value={ props.email } onChangeText={ text => props.modifyEmail(text) } style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
-                <TextInput value={ props.password } style={{ fontSize: 20, height: 45 }} placeholder='Password' />
+                <TextInput value={ props.password } onChangeText={ text => props.modifyPass(text) } style={{ fontSize: 20, height: 45 }} placeholder='Password' />
                 <TouchableHighlight onPress={ () => Actions.register() }>
                     <Text style={{ fontSize: 20 }}>
                         Still don't have an account? <Text>Register Now!</Text>
@@ -34,7 +34,8 @@ const mapStateToProps = state => (
     }
 )
 const actionCreators = {
-    modifyEmail
+    modifyEmail,
+    modifyPass
 }
 
 export default connect(mapStateToProps, actionCreators)(Login)
