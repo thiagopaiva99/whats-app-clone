@@ -1,15 +1,15 @@
 import React from 'react'
-import { View, Text, TextInput, Button, TouchableHighlight } from 'react-native'
+import { View, Text, TextInput, Button, TouchableHighlight, ImageBackground } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
 import { modifyEmail, modifyPass } from '../../actions/AuthActions'
 
-const Login = props => {
-    return (
+const Login = props => (
+    <ImageBackground style={{ flex: 1, width: null }} source={ require('../../assets/images/bg.png') }>
         <View style={{ flex: 1, padding: 10 }}>
-            <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 25, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>WhatsApp</Text>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontSize: 25, backgroundColor: 'transparent' }}>WhatsApp</Text>
             </View>
             <View style={{ flex: 2 }}>
                 <TextInput value={ props.email } onChangeText={ text => props.modifyEmail(text) } style={{ fontSize: 20, height: 45 }} placeholder='E-mail' />
@@ -23,9 +23,9 @@ const Login = props => {
             <View style={{ flex: 2 }}>
                 <Button title='Login' color='#115E54' onPress={ () => false } />
             </View>
-       </View>
-    )
-}
+        </View>
+    </ImageBackground>
+)
 
 const mapStateToProps = state => (
     {
