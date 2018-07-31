@@ -9,8 +9,8 @@ export default class TabViewExample extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: 'first', title: 'First' },
-      { key: 'second', title: 'Second' },
+      { key: 'first', title: 'Conversas' },
+      { key: 'second', title: 'Contatos' },
     ],
   };
 
