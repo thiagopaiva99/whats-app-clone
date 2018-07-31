@@ -1,4 +1,4 @@
-import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USER_LOGIN_NOT_SUCCESS, USER_NOT_CREATED } from '../constants';
+import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USER_LOGIN_NOT_SUCCESS, USER_LOGIN_SUCCESS, USER_NOT_CREATED, LOADING, NOT_LOADING } from '../constants';
 
 const INITIAL_STATE = {
     name: '',
@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     password: '',
     phone: '',
     registerError: '',
-    authError: ''
+    authError: '',
+    loading: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -47,11 +48,30 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 registerError: action.payload
             }
+
+        case USER_LOGIN_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            }
             
         case USER_LOGIN_NOT_SUCCESS:
             return {
                 ...state,
-                authError: action.payload
+                authError: action.payload,
+                loading: false
+            }
+
+        case LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case NOT_LOADING:
+            return {
+                ...state,
+                loading: false
             }
 
         default:

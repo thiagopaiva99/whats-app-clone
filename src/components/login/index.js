@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput, Button, TouchableHighlight, ImageBackground } from 'react-native'
+import { View, Text, TextInput, Button, TouchableHighlight, ImageBackground, ActivityIndicator } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
@@ -10,6 +10,21 @@ class Login extends React.Component {
         const user = { email, password } = this.props;
 
         this.props.authUser(user);
+    }
+
+    _renderAccessButton() {
+        if (this.props.loading) {
+            return (
+                <ActivityIndicator size='large' />
+            )
+        }
+
+        return (
+            <Button 
+                title='Login' 
+                color='#115E54' 
+                onPress={ () => this._authUser() } />
+        )
     }
 
     render() {
@@ -44,10 +59,7 @@ class Login extends React.Component {
                         <Text style={{ fontSize: 25, color: '#f00', backgroundColor: 'transparent' }}>{ this.props.error }</Text>
                     </View>
                     <View style={{ flex: 2 }}>
-                        <Button 
-                            title='Login' 
-                            color='#115E54' 
-                            onPress={ () => this._authUser() } />
+                        { this._renderAccessButton() }
                     </View>
                 </View>
             </ImageBackground>
@@ -59,7 +71,8 @@ const mapStateToProps = state => (
     {
         email: state.AuthReducer.email,
         password: state.AuthReducer.password,
-        error: state.AuthReducer.authError
+        error: state.AuthReducer.authError,
+        loading: state.AuthReducer.loading
     }
 )
 const actionCreators = {

@@ -5,7 +5,7 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import '@firebase/database';
 
-import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USER_LOGIN_NOT_SUCCESS, USER_NOT_CREATED } from '../constants';
+import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USER_LOGIN_NOT_SUCCESS, USER_NOT_CREATED, USER_LOGIN_SUCCESS, LOADING } from '../constants';
 
 const modifyName = text => {
     return {
@@ -52,6 +52,10 @@ const notLoggedUser = (error, dispatch) => {
 
 const authUser = user => {
     return dispatch => {
+        dispatch({
+            type: LOADING
+        });
+
         firebase
             .auth()
             .signInWithEmailAndPassword(user.email, user.password)
