@@ -34,10 +34,11 @@ const modifyPhone = text => {
 }
 
 const loggedUser = dispatch => {
-    alert('logou');
     dispatch({
         type: 'USER_LOGIN_SUCCESS'
     });
+
+    Actions.principal();
 }
 
 const notLoggedUser = (error, dispatch) => {
