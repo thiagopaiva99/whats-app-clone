@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 const modifyName = text => {
     return {
         type: 'MODIFY_NAME',
@@ -27,6 +29,12 @@ const modifyPhone = text => {
 }
 
 const registerUser = user => {
+    firebase
+        .auth()
+        .createUserWithEmailAndPassword(user.email, user.password)
+        .then(user => console.log(user))
+        .catch(error => console.log(error));
+
     return {
         type: 'teste'
     }

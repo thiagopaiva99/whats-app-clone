@@ -1,4 +1,6 @@
 .env
+./src/credentials.js
+src/credentials.js
 android
 ios
 
