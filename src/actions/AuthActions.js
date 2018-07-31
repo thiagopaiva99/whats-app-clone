@@ -33,6 +33,12 @@ const modifyPhone = text => {
     }
 }
 
+const authUser = user => {
+    return {
+        type: ''
+    }
+}
+
 const userCreated = (dispatch) => {
     dispatch({
         type: 'USER_CREATED'
@@ -74,5 +80,6 @@ export {
     modifyEmail,
     modifyPass,
     modifyPhone,
-    registerUser
+    registerUser,
+    authUser
 }
