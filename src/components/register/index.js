@@ -46,6 +46,8 @@ class Register extends React.Component {
                             placeholder='Password' 
                             secureTextEntry={ true } 
                             placeholderTextColor='#fff' />
+
+                            <Text style={{ color: '#f00', fontSize: 18 }}>{this.props.error}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Button title='Register' color='#115E54' onPress={ () => this._registerUser() } />
@@ -61,7 +63,8 @@ const mapStateToProps = state => (
         name: state.AuthReducer.name,
         email: state.AuthReducer.email,
         password: state.AuthReducer.password,
-        phone: state.AuthReducer.phone
+        phone: state.AuthReducer.phone,
+        error: state.AuthReducer.error
     }
 );
 

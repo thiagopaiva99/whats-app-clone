@@ -30,16 +30,15 @@ const modifyPhone = text => {
 }
 
 const userCreated = (dispatch) => {
-    alert('deu');
     dispatch({
         type: 'USER_CREATED'
     });
 }
 
 const userNotCreated = (error, dispatch) => {
-    alert('erro');
     dispatch({
-        type: 'USER_NOT_CREATED'
+        type: 'USER_NOT_CREATED',
+        payload: error.message
     });
 }
 

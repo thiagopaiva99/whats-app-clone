@@ -2,7 +2,8 @@ const INITIAL_STATE = {
     name: '',
     email: '',
     password: '',
-    phone: ''
+    phone: '',
+    error: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -31,6 +32,13 @@ export default (state = INITIAL_STATE, action) => {
         return {
             ...state,
             password: action.payload
+        }
+    }
+
+    if (action.type === 'USER_NOT_CREATED') {
+        return {
+            ...state,
+            error: action.payload
         }
     }
 
