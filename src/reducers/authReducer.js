@@ -40,13 +40,15 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 name: '',
-                password: ''
+                password: '',
+                loading: false
             }
             
         case USER_NOT_CREATED:
             return {
                 ...state,
-                registerError: action.payload
+                registerError: action.payload,
+                loading: false
             }
 
         case USER_LOGIN_SUCCESS:

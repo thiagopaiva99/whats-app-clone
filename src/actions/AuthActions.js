@@ -81,6 +81,10 @@ const userNotCreated = (error, dispatch) => {
 
 const registerUser = user => {
     return dispatch => {
+        dispatch({
+            type: LOADING
+        });
+
         firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password)

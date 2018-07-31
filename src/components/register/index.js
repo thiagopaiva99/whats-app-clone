@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Button, Text, ImageBackground } from 'react-native';
+import { View, TextInput, Button, Text, ImageBackground, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 import { modifyName, modifyEmail, modifyPass, modifyPhone, registerUser } from '../../actions/AuthActions';
@@ -8,6 +8,18 @@ class Register extends React.Component {
     _registerUser() {
         const user = { name, phone, email, password } = this.props;
         this.props.registerUser(user);
+    }
+
+    _renderRegisterButton() {
+        if (this.props.loading) {
+            return (
+                <ActivityIndicator size='large' />
+            )
+        }
+
+        return (
+            <Button title='Register' color='#115E54' onPress={ () => this._registerUser() } />
+        )
     }
 
     render() {
@@ -50,7 +62,7 @@ class Register extends React.Component {
                             <Text style={{ color: '#f00', fontSize: 18 }}>{this.props.error}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Button title='Register' color='#115E54' onPress={ () => this._registerUser() } />
+                        { this._renderRegisterButton() }
                     </View>
                 </View>
             </ImageBackground>
@@ -64,7 +76,8 @@ const mapStateToProps = state => (
         email: state.AuthReducer.email,
         password: state.AuthReducer.password,
         phone: state.AuthReducer.phone,
-        error: state.AuthReducer.registerError
+        error: state.AuthReducer.registerError,
+        loading: state.AuthReducer.loading
     }
 );
 
