@@ -1,12 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import firebase from 'firebase';
 
-import { apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId } from './credentials';
+import firebase from '@firebase/app';
 
 import Routes from './Routes';
 import reducers from './reducers/index';
+
+import { apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId } from './credentials';
 
 class App extends React.Component {
     componentWillMount() {
@@ -18,8 +19,6 @@ class App extends React.Component {
             storageBucket,
             messagingSenderId
         };
-
-        console.log(credentials);
 
         firebase.initializeApp(credentials);
     }

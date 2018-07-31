@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import firebase from '@firebase/app';
+import '@firebase/auth';
 
 const modifyName = text => {
     return {
@@ -28,15 +29,27 @@ const modifyPhone = text => {
     }
 }
 
+const userCreated = () => {
+    return {
+        type: 'success'
+    }
+}
+
+const userNotCreated = () => {
+    return {
+        type: 'error'
+    }
+}
+
 const registerUser = user => {
     firebase
         .auth()
         .createUserWithEmailAndPassword(user.email, user.password)
-        .then(user => console.log(user))
-        .catch(error => console.log(error));
+        .then(user => userCreated())
+        .catch(error => userNotCreated(error));
 
     return {
-        type: 'teste'
+        type: 'error'
     }
 }
 
