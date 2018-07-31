@@ -51,7 +51,8 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 authError: action.payload
             }
-    }
 
-    return state;
+        default:
+            return state;
+    }
 }
