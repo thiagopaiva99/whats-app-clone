@@ -1,7 +1,9 @@
 import { Actions } from 'react-native-router-flux';
+import b64 from 'base-64';
 
 import firebase from '@firebase/app';
 import '@firebase/auth';
+import '@firebase/database';
 
 const modifyName = text => {
     return {
@@ -51,7 +53,18 @@ const registerUser = user => {
         firebase
             .auth()
             .createUserWithEmailAndPassword(user.email, user.password)
-            .then(user => userCreated(dispatch))
+            .then(response => {
+                const emailB64 = b64.encode(user.email);
+
+                firebase
+                    .database()
+                    .ref(`/contacts/${emailB64}`)
+                    .push({
+                        name: user.name,
+                        phone: user.phone
+                    })
+                    .then(value => userCreated(dispatch));
+            })
             .catch(error => userNotCreated(error, dispatch));
     }
 }
