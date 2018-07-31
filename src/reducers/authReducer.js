@@ -1,3 +1,5 @@
+import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USER_LOGIN_NOT_SUCCESS, USER_NOT_CREATED } from '../constants';
+
 const INITIAL_STATE = {
     name: '',
     email: '',
@@ -9,44 +11,44 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'MODIFY_NAME':
+        case MODIFY_NAME:
             return {
                 ...state,
                 name: action.payload
             }
 
-        case 'MODIFY_PHONE':
+        case MODIFY_PHONE:
             return {
                 ...state,
                 phone: action.payload
             }
 
-        case 'MODIFY_EMAIL':
+        case MODIFY_EMAIL:
             return {
                 ...state,
                 email: action.payload
             }
             
-        case 'MODIFY_PASS':
+        case MODIFY_PASS:
             return {
                 ...state,
                 password: action.payload
             }
             
-        case 'USER_CREATED':
+        case USER_CREATED:
             return {
                 ...state,
                 name: '',
                 password: ''
             }
             
-        case 'USER_NOT_CREATED':
+        case USER_NOT_CREATED:
             return {
                 ...state,
                 registerError: action.payload
             }
             
-        case 'USER_LOGIN_NOT_SUCCESS':
+        case USER_LOGIN_NOT_SUCCESS:
             return {
                 ...state,
                 authError: action.payload

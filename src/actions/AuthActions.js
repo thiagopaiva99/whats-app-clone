@@ -5,37 +5,39 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import '@firebase/database';
 
+import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USER_LOGIN_NOT_SUCCESS, USER_NOT_CREATED } from '../constants';
+
 const modifyName = text => {
     return {
-        type: 'MODIFY_NAME',
+        type: MODIFY_NAME,
         payload: text
     }
 }
 
 const modifyEmail = text => {
     return {
-        type: 'MODIFY_EMAIL',
+        type: MODIFY_EMAIL,
         payload: text
     }
 }
 
 const modifyPass = text => {
     return {
-        type: 'MODIFY_PASS',
+        type: MODIFY_PASS,
         payload: text
     }
 }
 
 const modifyPhone = text => {
     return {
-        type: 'MODIFY_PHONE',
+        type: MODIFY_PHONE,
         payload: text
     }
 }
 
 const loggedUser = dispatch => {
     dispatch({
-        type: 'USER_LOGIN_SUCCESS'
+        type: USER_LOGIN_SUCCESS
     });
 
     Actions.principal();
@@ -43,7 +45,7 @@ const loggedUser = dispatch => {
 
 const notLoggedUser = (error, dispatch) => {
     dispatch({
-        type: 'USER_LOGIN_NOT_SUCCESS',
+        type: USER_LOGIN_NOT_SUCCESS,
         payload: error.message
     });
 }
@@ -60,7 +62,7 @@ const authUser = user => {
 
 const userCreated = (dispatch) => {
     dispatch({
-        type: 'USER_CREATED'
+        type: USER_CREATED
     });
 
     Actions.welcome();
@@ -68,7 +70,7 @@ const userCreated = (dispatch) => {
 
 const userNotCreated = (error, dispatch) => {
     dispatch({
-        type: 'USER_NOT_CREATED',
+        type: USER_NOT_CREATED,
         payload: error.message
     });
 }
