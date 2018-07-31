@@ -35,6 +35,14 @@ export default (state = INITIAL_STATE, action) => {
         }
     }
 
+    if (action.type === 'USER_CREATED') {
+        return {
+            ...state,
+            name: '',
+            password: ''
+        }
+    }
+
     if (action.type === 'USER_NOT_CREATED') {
         return {
             ...state,

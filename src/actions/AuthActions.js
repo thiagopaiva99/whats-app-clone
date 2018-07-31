@@ -1,3 +1,5 @@
+import { Actions } from 'react-native-router-flux';
+
 import firebase from '@firebase/app';
 import '@firebase/auth';
 
@@ -33,6 +35,8 @@ const userCreated = (dispatch) => {
     dispatch({
         type: 'USER_CREATED'
     });
+
+    Actions.welcome();
 }
 
 const userNotCreated = (error, dispatch) => {
