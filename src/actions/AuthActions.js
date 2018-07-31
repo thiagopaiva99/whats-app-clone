@@ -47,10 +47,6 @@ const registerUser = user => {
         .createUserWithEmailAndPassword(user.email, user.password)
         .then(user => userCreated())
         .catch(error => userNotCreated(error));
-
-    return {
-        type: 'error'
-    }
 }
 
 export {
