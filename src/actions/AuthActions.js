@@ -29,24 +29,28 @@ const modifyPhone = text => {
     }
 }
 
-const userCreated = () => {
-    return {
-        type: 'success'
-    }
+const userCreated = (dispatch) => {
+    alert('deu');
+    dispatch({
+        type: 'USER_CREATED'
+    });
 }
 
-const userNotCreated = () => {
-    return {
-        type: 'error'
-    }
+const userNotCreated = (error, dispatch) => {
+    alert('erro');
+    dispatch({
+        type: 'USER_NOT_CREATED'
+    });
 }
 
 const registerUser = user => {
-    firebase
-        .auth()
-        .createUserWithEmailAndPassword(user.email, user.password)
-        .then(user => userCreated())
-        .catch(error => userNotCreated(error));
+    return dispatch => {
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(user.email, user.password)
+            .then(user => userCreated(dispatch))
+            .catch(error => userNotCreated(error, dispatch));
+    }
 }
 
 export {
