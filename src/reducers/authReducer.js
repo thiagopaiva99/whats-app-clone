@@ -3,7 +3,8 @@ const INITIAL_STATE = {
     email: '',
     password: '',
     phone: '',
-    error: ''
+    registerError: '',
+    authError: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -46,7 +47,14 @@ export default (state = INITIAL_STATE, action) => {
     if (action.type === 'USER_NOT_CREATED') {
         return {
             ...state,
-            error: action.payload
+            registerError: action.payload
+        }
+    }
+
+    if (action.type === 'USER_LOGIN_NOT_SUCCESS') {
+        return {
+            ...state,
+            authError: action.payload
         }
     }
 

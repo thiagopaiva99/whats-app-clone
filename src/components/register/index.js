@@ -64,7 +64,7 @@ const mapStateToProps = state => (
         email: state.AuthReducer.email,
         password: state.AuthReducer.password,
         phone: state.AuthReducer.phone,
-        error: state.AuthReducer.error
+        error: state.AuthReducer.registerError
     }
 );
 

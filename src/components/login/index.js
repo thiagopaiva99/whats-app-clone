@@ -40,6 +40,8 @@ class Login extends React.Component {
                                 Still don't have an account? <Text style={{ color: '#069' }} selectionColor='transparent'>Register Now!</Text>
                             </Text>
                         </TouchableHighlight>
+
+                        <Text style={{ fontSize: 25, color: '#f00', backgroundColor: 'transparent' }}>{ this.props.error }</Text>
                     </View>
                     <View style={{ flex: 2 }}>
                         <Button 
@@ -56,7 +58,8 @@ class Login extends React.Component {
 const mapStateToProps = state => (
     {
         email: state.AuthReducer.email,
-        password: state.AuthReducer.password
+        password: state.AuthReducer.password,
+        error: state.AuthReducer.authError
     }
 )
 const actionCreators = {

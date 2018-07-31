@@ -33,9 +33,27 @@ const modifyPhone = text => {
     }
 }
 
+const loggedUser = dispatch => {
+    alert('logou');
+    dispatch({
+        type: 'USER_LOGIN_SUCCESS'
+    });
+}
+
+const notLoggedUser = (error, dispatch) => {
+    dispatch({
+        type: 'USER_LOGIN_NOT_SUCCESS',
+        payload: error.message
+    });
+}
+
 const authUser = user => {
-    return {
-        type: ''
+    return dispatch => {
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(user.email, user.password)
+            .then(response => loggedUser(dispatch))
+            .catch(error => notLoggedUser(error, dispatch))
     }
 }
 
