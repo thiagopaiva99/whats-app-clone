@@ -7,7 +7,7 @@ import '@firebase/database';
 
 import _ from 'lodash';
 
-import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR, CONTACT_SAVE_SUCCESS } from '../constants';
+import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR, CONTACT_SAVE_SUCCESS, CONTACT_SAVE_TRANSFORM } from '../constants';
 
 const modifyEmail = text => {
     return {
@@ -27,6 +27,14 @@ const contactSaveSuccess = dispatch => {
     dispatch({
         type: CONTACT_SAVE_SUCCESS
     })
+
+    setTimeout(() => {
+        Actions.principal()
+
+        dispatch({
+            type: CONTACT_SAVE_TRANSFORM
+        })
+    }, 3000)
 }
 
 const addContact = email => {
