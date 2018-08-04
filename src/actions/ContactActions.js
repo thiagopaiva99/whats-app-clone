@@ -7,7 +7,7 @@ import '@firebase/database';
 
 import _ from 'lodash';
 
-import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR, CONTACT_SAVE_SUCCESS, CONTACT_SAVE_TRANSFORM } from '../constants';
+import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR, CONTACT_SAVE_SUCCESS, CONTACT_SAVE_TRANSFORM, CONTACT_LIST } from '../constants';
 
 const modifyEmail = text => {
     return {
@@ -73,7 +73,26 @@ const addContact = email => {
     }
 }
 
+const getContacts = () => {
+    const { currentUser } = firebase.auth()
+
+    return dispatch => {
+        const emailB64 = b64.encode(currentUser.email)
+
+        firebase
+            .database()
+            .ref(`/userContacts/${emailB64}`)
+            .on('value', snapshot => {
+                dispatch({
+                    type: CONTACT_LIST,
+                    payload: snapshot.val()
+                })
+            })
+    }
+}
+
 export {
     modifyEmail,
-    addContact
+    addContact,
+    getContacts
 }

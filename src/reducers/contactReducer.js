@@ -29,6 +29,7 @@ export default (state = INITIAL_STATE, action) => {
         case CONTACT_SAVE_TRANSFORM:
             return {
                 ...state,
+                email: '',
                 saved: false
             }
 
