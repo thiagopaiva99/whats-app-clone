@@ -5,6 +5,8 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import '@firebase/database';
 
+import _ from 'lodash';
+
 import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR } from '../constants';
 
 const modifyEmail = text => {
@@ -24,12 +26,14 @@ const addContact = email => {
             .once('value')
             .then(snapshot => {
                 if (snapshot.val()) {
+                    const userData = _.first(_.values(snapshot.val()));
+
                     const { currentUser } = firebase.auth()
                     const currentUserEmailB64 = b64.encode(currentUser.email)
 
                     const contact = {
                         email,
-                        name: 'Nome do Contato'
+                        name: userData.name
                     }
 
                     firebase
