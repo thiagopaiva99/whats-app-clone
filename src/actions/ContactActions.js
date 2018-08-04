@@ -16,6 +16,13 @@ const modifyEmail = text => {
     }
 }
 
+const contactSaveError = (error, dispatch) => {
+    dispatch({
+        type: CONTACT_SAVE_ERROR,
+        payload: error
+    })
+}
+
 const addContact = email => {
     return dispatch => {
         const emailB64 = b64.encode(email);
