@@ -7,7 +7,7 @@ import '@firebase/database';
 
 import _ from 'lodash';
 
-import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR } from '../constants';
+import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR, CONTACT_SAVE_SUCCESS } from '../constants';
 
 const modifyEmail = text => {
     return {
@@ -20,6 +20,12 @@ const contactSaveError = (error, dispatch) => {
     dispatch({
         type: CONTACT_SAVE_ERROR,
         payload: error
+    })
+}
+
+const contactSaveSuccess = dispatch => {
+    dispatch({
+        type: CONTACT_SAVE_SUCCESS
     })
 }
 
@@ -47,7 +53,7 @@ const addContact = email => {
                         .database()
                         .ref(`/userContacts/${currentUserEmailB64}`)
                         .push(contact)
-                        .then(() => console.log(res))
+                        .then(() => contactSaveSuccess(dispatch))
                         .catch(err => contactSaveError(error.message, dispatch))
                 } else {
                     dispatch({

@@ -1,8 +1,9 @@
-import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR } from '../constants';
+import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR, CONTACT_SAVE_SUCCESS } from '../constants';
 
 const INITIAL_STATE = {
     email: '',
-    error: ''
+    error: '',
+    saved: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,6 +18,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 error: action.payload
+            }
+
+        case CONTACT_SAVE_SUCCESS:
+            return {
+                ...state,
+                saved: true
             }
 
         default:
