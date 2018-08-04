@@ -5,6 +5,7 @@ import Login from './components/login/index';
 import Register from './components/register/index';
 import Welcome from './components/welcome/index';
 import Principal from './components/principal/index';
+import AddContact from './components/contacts/AddContact';
 
 export default props => (
     <Router>
@@ -13,6 +14,7 @@ export default props => (
             <Scene key='register' component={ Register } title='Register' hideNavBar={ false } />
             <Scene key='welcome' component={ Welcome } title='Welcome' initial={ true } />
             <Scene key='principal' component={ Principal } title='Principal' />
+            <Scene key='addContact' component={ AddContact } title='Add Contact' hideNavBar={ false } />
         </Scene>
     </Router>
 )
