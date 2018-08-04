@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    email
+    email: 'teste@teste.com'
 };
 
 export default (state = INITIAL_STATE, action) => {
