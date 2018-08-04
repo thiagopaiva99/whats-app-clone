@@ -48,7 +48,7 @@ const addContact = email => {
                         .ref(`/userContacts/${currentUserEmailB64}`)
                         .push(contact)
                         .then(() => console.log(res))
-                        .catch(err => console.log(err))
+                        .catch(err => contactSaveError(error.message, dispatch))
                 } else {
                     dispatch({
                         type: CONTACT_SAVE_ERROR,
