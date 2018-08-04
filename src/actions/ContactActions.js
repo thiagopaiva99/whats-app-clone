@@ -7,6 +7,14 @@ const modifyEmail = text => {
     }
 }
 
+const addContact = email => {
+    return {
+        type: '',
+        payload: email
+    }
+}
+
 export {
-    modifyEmail
+    modifyEmail,
+    addContact
 }
