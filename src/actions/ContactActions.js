@@ -5,7 +5,7 @@ import firebase from '@firebase/app';
 import '@firebase/auth';
 import '@firebase/database';
 
-import { CONTACT_MODIFY_EMAIL } from '../constants';
+import { CONTACT_MODIFY_EMAIL, CONTACT_SAVE_ERROR } from '../constants';
 
 const modifyEmail = text => {
     return {
@@ -15,21 +15,23 @@ const modifyEmail = text => {
 }
 
 const addContact = email => {
-    const emailB64 = b64.encode(email);
+    return dispatch => {
+        const emailB64 = b64.encode(email);
 
-    firebase
-        .database()
-        .ref(`/contacts/${emailB64}`)
-        .once('value')
-        .then(snapshot => {
-            if (snapshot.val()) {
-                
-            }
-        })
-
-    return {
-        type: '',
-        payload: email
+        firebase
+            .database()
+            .ref(`/contacts/${emailB64}`)
+            .once('value')
+            .then(snapshot => {
+                if (snapshot.val()) {
+    
+                } else {
+                    dispatch({
+                        type: CONTACT_SAVE_ERROR,
+                        payload: 'Este usuário não existe'
+                    })
+                }
+            })
     }
 }
 
