@@ -10,8 +10,8 @@ const AddContact = props => (
             <TextInput 
                 placeholder='E-mail' 
                 style={{ fontSize: 20, height: 45 }} 
-                value={ props.email }
-                onChange={ text => props.modifyEmail(text) } />
+                onChangeText={ text => props.modifyEmail(text) }
+                value={ props.email } />
         </View>
         
         <View style={{ flex: 1 }}>

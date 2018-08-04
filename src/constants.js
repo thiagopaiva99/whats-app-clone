@@ -1,3 +1,4 @@
+// AUTH
 export const MODIFY_NAME = 'MODIFY_NAME';
 export const MODIFY_PHONE = 'MODIFY_PHONE';
 export const MODIFY_EMAIL = 'MODIFY_EMAIL';
@@ -8,3 +9,6 @@ export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_NOT_SUCCESS = 'USER_LOGIN_NOT_SUCCESS';
 export const LOADING = 'LOADING';
 export const NOT_LOADING = 'NOT_LOADING';
+
+// CONTACTS
+export const CONTACT_MODIFY_EMAIL = 'CONTACT_MODIFY_EMAIL';

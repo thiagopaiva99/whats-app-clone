@@ -1,6 +1,8 @@
+import { CONTACT_MODIFY_EMAIL } from '../constants';
+
 const modifyEmail = text => {
     return {
-        type: 'MODIFY_EMAIL',
+        type: CONTACT_MODIFY_EMAIL,
         payload: text
     }
 }
