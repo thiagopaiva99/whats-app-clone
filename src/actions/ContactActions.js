@@ -24,7 +24,20 @@ const addContact = email => {
             .once('value')
             .then(snapshot => {
                 if (snapshot.val()) {
-    
+                    const { currentUser } = firebase.auth()
+                    const currentUserEmailB64 = b64.encode(currentUser.email)
+
+                    const contact = {
+                        email,
+                        name: 'Nome do Contato'
+                    }
+
+                    firebase
+                        .database()
+                        .ref(`/userContacts/${currentUserEmailB64}`)
+                        .push(contact)
+                        .then(() => console.log(res))
+                        .catch(err => console.log(err))
                 } else {
                     dispatch({
                         type: CONTACT_SAVE_ERROR,
