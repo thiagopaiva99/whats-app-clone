@@ -2,8 +2,8 @@ import { MODIFY_EMAIL, MODIFY_NAME, MODIFY_PHONE, MODIFY_PASS, USER_CREATED, USE
 
 const INITIAL_STATE = {
     name: '',
-    email: '',
-    password: '',
+    email: 'thiagopaiva99@gmail.com',
+    password: '123456',
     phone: '',
     registerError: '',
     authError: '',

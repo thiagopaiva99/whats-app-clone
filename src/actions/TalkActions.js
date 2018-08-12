@@ -81,16 +81,9 @@ const fetchUserTalk = contactEmail => {
             .database()
             .ref(`/messages/${emailB64}/${contactB64}`)
             .on('value', snapshot => {
-                const messages = _.map(snapshot.val(), (val, uid) => {
-                    return {
-                        ...val,
-                        uid
-                    }
-                })
-                
                 dispatch({
                     type: USER_TALK_LIST,
-                    payload: messages
+                    payload: snapshot.val()
                 })
             })
     }

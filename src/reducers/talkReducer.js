@@ -2,7 +2,7 @@ import { MODIFY_MESSAGE, SEND_MESSAGE, USER_TALK_LIST } from '../constants'
 
 const INITIAL_STATE = {
     message: '',
-    messages: []
+    talk: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
         case USER_TALK_LIST:
             return {
                 ...state,
-                messages: action.payload
+                talk: action.payload
             }
 
         default: 
