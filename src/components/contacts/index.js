@@ -9,27 +9,34 @@ import { getContacts } from '../../actions/ContactActions'
 class Contacts extends React.Component {
     constructor(props) {
         super(props)
+    }
 
-        const datasource = new ListView.DataSource({
+    _createDataSource = contacts => {
+        const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         })
 
-        this.state = {
-            data: datasource.cloneWithRows([
-                'Registro 1',
-                'Registro 2',
-                'Registro 3',
-                'Registro 4',
-            ])
-        }
+        this.datasource = ds.cloneWithRows(contacts)
     }
 
     _addContact = () => {
         Actions.addContact()
     }
 
+    _renderRow = data => (
+        <View>
+            <Text>{ data.name }</Text>
+            <Text>{ data.email }</Text>
+        </View>
+    )
+
     componentWillMount() {
         this.props.getContacts()
+        this._createDataSource(this.props.contacts)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this._createDataSource(nextProps.contacts)
     }
 
     render() {
@@ -38,8 +45,9 @@ class Contacts extends React.Component {
                 <Button title='Adicionar Contato' onPress={ () => this._addContact() } />
 
                 <ListView
-                    dataSource={ this.state.data }
-                    renderRow={ data => <View><Text>{ data }</Text></View> } />
+                    enableEmptySections
+                    dataSource={ this.datasource }
+                    renderRow={ data => this._renderRow(data) } />
             </View>
         )
     }
