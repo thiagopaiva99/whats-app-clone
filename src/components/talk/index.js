@@ -1,6 +1,9 @@
 import React from 'react'
 import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native'
 
+import { connect } from 'react-redux'
+
+
 class Talk extends React.Component {
     render() {
         return (
@@ -21,4 +24,14 @@ class Talk extends React.Component {
     }
 }
 
-export default Talk
+const mapStateToProps = state => (
+    {
+        message: state.TalkReducer.message
+    }
+)
+
+const actionCreators = {
+    
+}
+
+export default connect(mapStateToProps, actionCreators)(Talk)
