@@ -1,4 +1,4 @@
-import { MODIFY_MESSAGE } from '../constants'
+import { MODIFY_MESSAGE, SEND_MESSAGE } from '../constants'
 
 const modifyMessage = message => {
     return {
@@ -7,6 +7,13 @@ const modifyMessage = message => {
     }
 }
 
+const sendMessage = message => {
+    return {
+        type: SEND_MESSAGE
+    }
+}
+
 export {
-    modifyMessage
+    modifyMessage,
+    sendMessage
 }

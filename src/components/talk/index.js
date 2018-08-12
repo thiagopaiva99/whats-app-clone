@@ -2,9 +2,13 @@ import React from 'react'
 import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 
-import { modifyMessage } from '../../actions/TalkActions'
+import { modifyMessage, sendMessage } from '../../actions/TalkActions'
 
 class Talk extends React.Component {
+    _sendMessage = () => {
+        const message = this.props.message
+    }
+
     render() {
         return (
             <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
@@ -15,7 +19,7 @@ class Talk extends React.Component {
                         onChangeText={ text => this.props.modifyMessage(text) }
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }} />
 
-                    <TouchableHighlight onPress={ () => false } underlayColor="transparent">
+                    <TouchableHighlight onPress={ () => this._sendMessage() } underlayColor="transparent">
                         <Image source={ require('../../assets/images/send.png') } />
                     </TouchableHighlight>
                 </View>
@@ -31,7 +35,8 @@ const mapStateToProps = state => (
 )
 
 const actionCreators = {
-    modifyMessage
+    modifyMessage,
+    sendMessage
 }
 
 export default connect(mapStateToProps, actionCreators)(Talk)
