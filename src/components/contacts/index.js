@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, ListView } from 'react-native'
+import { View, Text, Button, ListView, TouchableHighlight } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
@@ -24,10 +24,13 @@ class Contacts extends React.Component {
     }
 
     _renderRow = data => (
-        <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#CCC' }}>
-            <Text style={{ fontSize: 23 }}>{ data.name }</Text>
-            <Text style={{ fontSize: 18 }}>{ data.email }</Text>
-        </View>
+        <TouchableHighlight
+            onPress={ () => Actions.talk() } >
+            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#CCC' }}>
+                <Text style={{ fontSize: 23 }}>{ data.name }</Text>
+                <Text style={{ fontSize: 18 }}>{ data.email }</Text>
+            </View>
+        </TouchableHighlight>
     )
 
     componentWillMount() {
@@ -47,7 +50,7 @@ class Contacts extends React.Component {
                 <ListView
                     enableEmptySections
                     dataSource={ this.datasource }
-                    renderRow={ data => this._renderRow(data) } />
+                    renderRow={ this._renderRow } />
             </View>
         )
     }

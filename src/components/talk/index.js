@@ -10,3 +10,5 @@ class Talk extends React.Component {
         )
     }
 }
+
+export default Talk
