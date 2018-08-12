@@ -21,7 +21,7 @@ class Talk extends React.Component {
                         onChangeText={ text => this.props.modifyMessage(text) }
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }} />
 
-                    <TouchableHighlight onPress={ () => this._sendMessage.bind(this) } underlayColor="transparent">
+                    <TouchableHighlight onPress={ () => this._sendMessage() } underlayColor="transparent">
                         <Image source={ require('../../assets/images/send.png') } />
                     </TouchableHighlight>
                 </View>

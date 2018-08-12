@@ -1,7 +1,8 @@
-import firebase from '@firebase/app';
-import '@firebase/auth';
-import '@firebase/database';
-import b64 from 'base-64';
+import firebase from '@firebase/app'
+import '@firebase/auth'
+import '@firebase/database'
+import b64 from 'base-64'
+import _ from 'lodash'
 
 import { MODIFY_MESSAGE, SEND_MESSAGE } from '../constants'
 
@@ -15,7 +16,7 @@ const modifyMessage = message => {
 const sendMessage = data => {
     return dispatch => {
         const { currentUser } = firebase.auth()
-        const currentEmail = currentEmail.email
+        const currentEmail = currentUser.email
 
         const emailB64 = b64.encode(currentEmail)
         const contactB64 = b64.encode(data.contactEmail)
@@ -33,9 +34,37 @@ const sendMessage = data => {
                     .ref(`/messages/${contactB64}/${emailB64}`)
                     .push({
                         message: data.message,
-                        type: 's'
+                        type: 'r'
                     })
                     .then(() => dispatch({ type: SEND_MESSAGE }))
+            })
+            .then(() => {
+                firebase
+                    .database()
+                    .ref(`/userTalks/${emailB64}/${contactB64}`)
+                    .set({
+                        name: data.contactName,
+                        email: data.contactEmail,
+                        lastMessage: data.message
+                    })
+            })
+            .then(() => {
+                firebase
+                    .database()
+                    .ref(`/contacts/${emailB64}`)
+                    .once('value')
+                    .then(snapshot => {
+                        const userData = _.first(_.values(snapshot.val()))
+
+                        firebase
+                            .database()
+                            .ref(`/userTalks/${contactB64}/${emailB64}`)
+                            .set({
+                                name: userData.name,
+                                email: currentEmail,
+                                lastMessage: data.message
+                            })
+                    })
             })
     }
 }
