@@ -20,3 +20,4 @@ export const CONTACT_LIST = 'CONTACT_LIST';
 // MESSAGES
 export const MODIFY_MESSAGE = 'MODIFY_MESSAGE';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const USER_TALK_LIST = 'USER_TALK_LIST';

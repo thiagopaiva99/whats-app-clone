@@ -4,7 +4,7 @@ import '@firebase/database'
 import b64 from 'base-64'
 import _ from 'lodash'
 
-import { MODIFY_MESSAGE, SEND_MESSAGE } from '../constants'
+import { MODIFY_MESSAGE, SEND_MESSAGE, USER_TALK_LIST } from '../constants'
 
 const modifyMessage = message => {
     return {
@@ -65,6 +65,26 @@ const sendMessage = data => {
                                 lastMessage: data.message
                             })
                     })
+            })
+    }
+}
+
+const fetchUserTalk = contactEmail => {
+    return dispatch => {
+        const { currentUser } = firebase.auth()
+        const currentEmail = currentUser.email
+
+        const emailB64 = b64.encode(currentEmail)
+        const contactB64 = b64.encode(contactEmail)
+
+        firebase
+            .database()
+            .ref(`/messages/${emailB64}/${contactB64}`)
+            .on('value', snapshot => {
+                dispatch({
+                    type: USER_TALK_LIST,
+                    payload: snapshot.val()
+                })
             })
     }
 }
