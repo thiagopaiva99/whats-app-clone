@@ -2,13 +2,17 @@ import React from 'react'
 import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 
-import { modifyMessage, sendMessage } from '../../actions/TalkActions'
+import { modifyMessage, sendMessage, fetchUserTalk } from '../../actions/TalkActions'
 
 class Talk extends React.Component {
     _sendMessage = () => {
         const data = { message, contactName, contactEmail } = this.props
         
         this.props.sendMessage(data)
+    }
+
+    componentWillMount() {
+        this.props.fetchUserTalk(this.props.contactEmail)
     }
 
     render() {
@@ -32,13 +36,15 @@ class Talk extends React.Component {
 
 const mapStateToProps = state => (
     {
-        message: state.TalkReducer.message
+        message: state.TalkReducer.message,
+        messages: state.TalkReducer.messages
     }
 )
 
 const actionCreators = {
     modifyMessage,
-    sendMessage
+    sendMessage,
+    fetchUserTalk
 }
 
 export default connect(mapStateToProps, actionCreators)(Talk)
