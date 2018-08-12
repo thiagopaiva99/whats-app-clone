@@ -8,6 +8,8 @@ class Talk extends React.Component {
                 <View style={{ flex: 1, paddingBottom: 20 }}></View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
                     <TextInput 
+                        value= {}
+                        onChangeText={ text => false }
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }} />
 
                     <TouchableHighlight onPress={ () => false } underlayColor="transparent">
