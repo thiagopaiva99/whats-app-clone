@@ -14,7 +14,8 @@ export default (state = INITIAL_STATE, action) => {
 
         case SEND_MESSAGE:
             return {
-                ...state
+                ...state,
+                message: ''
             }
 
         default: 

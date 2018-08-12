@@ -6,12 +6,14 @@ import { modifyMessage, sendMessage } from '../../actions/TalkActions'
 
 class Talk extends React.Component {
     _sendMessage = () => {
-        const message = this.props.message
+        const data = { message, contactName, contactEmail } = this.props
+        
+        this.props.sendMessage(data)
     }
 
     render() {
         return (
-            <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
+            <View style={{ flex: 1, backgroundColor: '#eee4dc', padding: 10 }}>
                 <View style={{ flex: 1, paddingBottom: 20 }}></View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
                     <TextInput 
@@ -19,7 +21,7 @@ class Talk extends React.Component {
                         onChangeText={ text => this.props.modifyMessage(text) }
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }} />
 
-                    <TouchableHighlight onPress={ () => this._sendMessage() } underlayColor="transparent">
+                    <TouchableHighlight onPress={ () => this._sendMessage.bind(this) } underlayColor="transparent">
                         <Image source={ require('../../assets/images/send.png') } />
                     </TouchableHighlight>
                 </View>

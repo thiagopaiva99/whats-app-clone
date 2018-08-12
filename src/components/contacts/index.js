@@ -23,9 +23,17 @@ class Contacts extends React.Component {
         Actions.addContact()
     }
 
+    _talk = contact => {
+        Actions.talk({
+            title: contact.name,
+            contactName: contact.name,
+            contactEmail: contact.email
+        })
+    }
+
     _renderRow = data => (
         <TouchableHighlight
-            onPress={ () => Actions.talk() } >
+            onPress={ () => this._talk(data) } >
             <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#CCC' }}>
                 <Text style={{ fontSize: 23 }}>{ data.name }</Text>
                 <Text style={{ fontSize: 18 }}>{ data.email }</Text>

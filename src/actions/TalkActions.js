@@ -7,7 +7,7 @@ const modifyMessage = message => {
     }
 }
 
-const sendMessage = message => {
+const sendMessage = data => {
     return {
         type: SEND_MESSAGE
     }
