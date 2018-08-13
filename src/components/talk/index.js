@@ -12,12 +12,21 @@ class Talk extends React.Component {
         this.props.sendMessage(data)
     }
 
-    _renderRow = data => (
-        <View>
-            <Text>{ data.message }</Text>
-            <Text>{ data.type }</Text>
-        </View>
-    )
+    _renderRow = data => {
+        if (data.type === 's') {
+            return (
+                <View style={{ alignItems: 'flex-end', marginTop: 5, marginBottom: 5, marginLeft: 40 }}>
+                    <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#dbf5b4', elevation: 1 }}>{ data.message }</Text>
+                </View>
+            )
+        }
+
+        return (
+            <View style={{ alignItems: 'flex-start', marginTop: 5, marginBottom: 5, marginRight: 40 }}>
+                <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#f7f7f7', elevation: 1 }}>{ data.message }</Text>
+            </View>
+        )
+    }
 
     _createDataSource = talk => {
         const ds = new ListView.DataSource({
@@ -34,6 +43,10 @@ class Talk extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (this.props.contactEmail !== nextProps.contactEmail) {
+            this.props.fetchUserTalk(nextProps.contactEmail)
+        }
+
         this._createDataSource(nextProps.talk)
     }
 
