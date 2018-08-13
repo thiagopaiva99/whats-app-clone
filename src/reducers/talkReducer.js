@@ -2,7 +2,7 @@ import { MODIFY_MESSAGE, SEND_MESSAGE, USER_TALK_LIST } from '../constants'
 
 const INITIAL_STATE = {
     message: '',
-    talk: ''
+    talk: []
 }
 
 export default (state = INITIAL_STATE, action) => {
