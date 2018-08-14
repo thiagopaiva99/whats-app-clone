@@ -8,8 +8,8 @@ import { validateArgCount } from '@firebase/util';
 
 class Talks extends React.Component {
     _renderRow = talk => (
-        <View>
-            <Text>{ talk.name }</Text>
+        <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+            <Text style={{ fontSize: 25 }}>{ talk.name }</Text>
         </View>
     )
 
