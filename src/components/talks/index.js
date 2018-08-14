@@ -3,7 +3,8 @@ import {
   View, 
   Text, 
   ListView, 
-  TouchableHighlight 
+  TouchableHighlight,
+  Button
 } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash'
@@ -52,6 +53,8 @@ class Talks extends React.Component {
     render() {
         return (
             <View>
+                <Button title='Perfil' onPress={ () => Actions.profile() } />
+                
                 <ListView
                     enableEmptySections
                     dataSource={ this.datasource }
