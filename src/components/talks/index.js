@@ -1,16 +1,26 @@
 import React from 'react'
-import { View, Text, ListView } from 'react-native'
+import { View, Text, ListView, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { Action } from 'react-native-router-flux'
 
 import { fetchUserTalks } from '../../actions/TalksActions'
-import { validateArgCount } from '@firebase/util';
 
 class Talks extends React.Component {
+    _startTalk = talk => {
+        Actions.talk({
+            title: talk.name,
+            contactName: talk.name,
+            contactEmail: talk.email
+        })
+    }
+
     _renderRow = talk => (
-        <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-            <Text style={{ fontSize: 25 }}>{ talk.name }</Text>
-        </View>
+        <TouchableHighlight onPress={ () => this._startTalk(talk) }>
+            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+                <Text style={{ fontSize: 25 }}>{ talk.name }</Text>
+            </View>
+        </TouchableHighlight>
     )
 
     _createDataSource = talks => {
