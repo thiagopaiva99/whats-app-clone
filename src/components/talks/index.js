@@ -1,29 +1,38 @@
-import React from 'react'
-import { View, Text, ListView, TouchableHighlight } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react';
+import { 
+  View, 
+  Text, 
+  ListView, 
+  TouchableHighlight 
+} from 'react-native';
+import { connect } from 'react-redux';
 import _ from 'lodash'
-import { Action } from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux';
 
 import { fetchUserTalks } from '../../actions/TalksActions'
 
 class Talks extends React.Component {
-    _startTalk = talk => {
-        Actions.talk({
-            title: talk.name,
-            contactName: talk.name,
-            contactEmail: talk.email
-        })
+    _startTalk(talk) {
+        console.log('chegou aqui');
+        
     }
 
-    _renderRow = talk => (
-        <TouchableHighlight onPress={ () => this._startTalk(talk) }>
-            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-                <Text style={{ fontSize: 25 }}>{ talk.name }</Text>
-            </View>
-        </TouchableHighlight>
-    )
+    _renderRow(talk) {
+        return (
+            <TouchableHighlight onPress={ () => Actions.talk({
+                title: talk.name,
+                contactName: talk.name,
+                contactEmail: talk.email
+            }) }>
+                <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
+                    <Text style={{ fontSize: 25 }}>{ talk.name }</Text>
+                    <Text style={{ fontSize: 18 }}>{ talk.lastMessage }</Text>
+                </View>
+            </TouchableHighlight>
+        )
+    }
 
-    _createDataSource = talks => {
+    _createDataSource(talks) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         })
@@ -53,7 +62,7 @@ class Talks extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const talks = _.map(state.TalksReducer.talks, (validateArgCount, uid) => {
+    const talks = _.map(state.TalksReducer.talks, (val, uid) => {
         return {
             ...val,
             uid
