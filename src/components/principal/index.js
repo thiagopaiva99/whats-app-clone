@@ -17,17 +17,17 @@ export default class TabViewExample extends React.Component {
   };
 
   render() {
-    return (
-      <TabView
-        navigationState={this.state}
-        renderScene={SceneMap({
-          one: Talks,
-          two: Status,
-          three: Contacts,
-        })}
-        onIndexChange={index => this.setState({ index })}
-        initialLayout={{ width: Dimensions.get('window').width }}
-      />
-    );
+        return (
+          <TabView
+            navigationState={this.state}
+            renderScene={SceneMap({
+              one: Talks,
+              two: Status,
+              three: Contacts,
+            })}
+            onIndexChange={index => this.setState({ index })}
+            initialLayout={{ width: Dimensions.get('window').width }}
+          />
+        );
   }
 }

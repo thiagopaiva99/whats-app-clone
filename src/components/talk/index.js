@@ -7,23 +7,26 @@ import { modifyMessage, sendMessage, fetchUserTalk } from '../../actions/TalkAct
 
 class Talk extends React.Component {
     _sendMessage = () => {
+        const date = new Date()
+        const hour = `${date.getHours() < 10 ? '0' + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`
+
         const data = { message, contactName, contactEmail } = this.props
         
-        this.props.sendMessage(data)
+        this.props.sendMessage(data, hour)
     }
 
     _renderRow = data => {
         if (data.type === 's') {
             return (
                 <View style={{ alignItems: 'flex-end', marginTop: 5, marginBottom: 5, marginLeft: 40 }}>
-                    <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#dbf5b4', elevation: 1 }}>{ data.message }</Text>
+                    <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#dbf5b4', elevation: 1 }}>{ data.message } <Text style={{ fontSize: 12, color: '#888' }}>{ data.hour }</Text></Text>
                 </View>
             )
         }
 
         return (
             <View style={{ alignItems: 'flex-start', marginTop: 5, marginBottom: 5, marginRight: 40 }}>
-                <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#f7f7f7', elevation: 1 }}>{ data.message }</Text>
+                <Text style={{ fontSize: 18, color: '#000', padding: 10, backgroundColor: '#f7f7f7', elevation: 1 }}>{ data.message } <Text style={{ fontSize: 12, color: '#888' }}>{ data.hour }</Text></Text>
             </View>
         )
     }

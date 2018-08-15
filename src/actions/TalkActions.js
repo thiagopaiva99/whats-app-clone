@@ -13,7 +13,7 @@ const modifyMessage = message => {
     }
 }
 
-const sendMessage = data => {
+const sendMessage = (data, hour) => {
     return dispatch => {
         const { currentUser } = firebase.auth()
         const currentEmail = currentUser.email
@@ -26,6 +26,7 @@ const sendMessage = data => {
             .ref(`/messages/${emailB64}/${contactB64}`)
             .push({
                 message: data.message,
+                hour,
                 type: 's'
             })
             .then(() => {
@@ -34,6 +35,7 @@ const sendMessage = data => {
                     .ref(`/messages/${contactB64}/${emailB64}`)
                     .push({
                         message: data.message,
+                        hour,
                         type: 'r'
                     })
                     .then(() => dispatch({ type: SEND_MESSAGE }))
@@ -45,7 +47,8 @@ const sendMessage = data => {
                     .set({
                         name: data.contactName,
                         email: data.contactEmail,
-                        lastMessage: data.message
+                        lastMessage: data.message,
+                        hour,
                     })
             })
             .then(() => {
@@ -62,7 +65,8 @@ const sendMessage = data => {
                             .set({
                                 name: userData.name,
                                 email: currentEmail,
-                                lastMessage: data.message
+                                lastMessage: data.message,
+                                hour,
                             })
                     })
             })

@@ -13,11 +13,6 @@ import { Actions } from 'react-native-router-flux';
 import { fetchUserTalks } from '../../actions/TalksActions'
 
 class Talks extends React.Component {
-    _startTalk(talk) {
-        console.log('chegou aqui');
-        
-    }
-
     _renderRow(talk) {
         return (
             <TouchableHighlight onPress={ () => Actions.talk({
