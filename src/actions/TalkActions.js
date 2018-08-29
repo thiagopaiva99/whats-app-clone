@@ -48,7 +48,7 @@ const sendMessage = (data, hour) => {
                         name: data.contactName,
                         email: data.contactEmail,
                         lastMessage: data.message,
-                        hour,
+                        hour
                     })
             })
             .then(() => {
@@ -66,7 +66,7 @@ const sendMessage = (data, hour) => {
                                 name: userData.name,
                                 email: currentEmail,
                                 lastMessage: data.message,
-                                hour,
+                                hour
                             })
                     })
             })
